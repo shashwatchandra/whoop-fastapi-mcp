@@ -32,3 +32,6 @@ check_*.py
 # Logs
 *.log
 logs/
+
+# Archived test files
+archived_tests/

@@ -112,25 +112,100 @@ User → Browser → whoop_simple.py (/dashboard)
                  Browser Display
 ```
 
-## File Structure
+## File Structure by Component
 
+### 🔵 Core Application Components
+
+#### FastAPI OAuth Server
 ```
-agera-fastapi/
-├── whoop_simple.py              # FastAPI server (OAuth + Web UI)
-├── whoop_mcp_server.py          # MCP server (AI assistant interface)
-├── test_mcp_server.py           # MCP testing script
-│
-├── .env                         # Environment variables
-├── .token_cache.json            # Cached OAuth token (created after login)
-│
-├── requirements.txt             # FastAPI dependencies
-├── requirements_mcp.txt         # MCP-specific dependencies
-│
-├── README.md                    # FastAPI server docs
-├── MCP_README.md                # MCP server full docs
-├── SETUP_MCP.md                 # MCP quick setup guide
-├── ARCHITECTURE.md              # This file
-└── claude_desktop_config.json   # MCP client configuration template
+whoop_simple.py              # Main FastAPI server (OAuth + Dashboard)
+```
+**Purpose**: Web-based WHOOP authentication and data visualization  
+**Functions**: OAuth flow, token management, HTML dashboard, REST endpoints
+
+#### MCP Server
+```
+whoop_mcp_server.py          # MCP server for Claude Desktop
+```
+**Purpose**: AI assistant integration via Model Context Protocol  
+**Functions**: 8 tools for accessing WHOOP data, stdio communication
+
+### 🧪 Testing & Development Tools
+```
+test_mcp_server.py           # MCP server testing script
+test_mcp_client.py           # MCP client testing tool
+cleanup_unused_files.ps1     # Project cleanup script
+archived_tests/              # Archived debugging scripts (13 files)
+```
+
+### ⚙️ Configuration Files
+
+#### Environment & Secrets
+```
+.env                         # Credentials (WHOOP_CLIENT_ID, WHOOP_CLIENT_SECRET)
+.env.example                 # Template for environment variables
+.token_cache.json            # Cached OAuth token (auto-generated)
+```
+
+#### MCP Configuration
+```
+claude_desktop_config.json   # Claude Desktop MCP server config template
+```
+
+#### Python Dependencies
+```
+requirements.txt             # FastAPI + httpx dependencies
+requirements_mcp.txt         # MCP SDK dependencies
+```
+
+#### Git Configuration
+```
+.gitignore                   # Excludes .env, .token_cache.json, .venv/
+```
+
+### 📚 Documentation
+```
+docs/
+├── MCP_README.md            # Complete MCP server documentation
+├── SETUP_MCP.md             # Step-by-step MCP setup guide
+├── QUICKSTART.md            # Fast-track setup instructions
+├── ARCHITECTURE.md          # System architecture (this file)
+├── SECURITY_CHECKLIST.md    # Security guidelines for GitHub
+└── MCP_COMPLETE.md          # MCP completion notes
+
+README.md                    # Main project overview (at root for GitHub)
+```
+
+### 🗂️ Component Diagram
+```
+┌─────────────────────────────────────────────────────┐
+│                 agera-fastapi/                      │
+│                                                     │
+│  📦 Core Components (root)                          │
+│  ├─ whoop_simple.py         (FastAPI OAuth)        │
+│  └─ whoop_mcp_server.py     (MCP Server)           │
+│                                                     │
+│  🧪 Testing Tools (root)                            │
+│  ├─ test_mcp_server.py                             │
+│  ├─ test_mcp_client.py                             │
+│  └─ archived_tests/         (13 archived files)    │
+│                                                     │
+│  ⚙️ Configuration (root)                            │
+│  ├─ .env                    (secrets - protected)  │
+│  ├─ .env.example            (template)             │
+│  ├─ .token_cache.json       (OAuth - protected)    │
+│  ├─ claude_desktop_config.json (MCP config)        │
+│  ├─ requirements.txt        (FastAPI deps)         │
+│  └─ requirements_mcp.txt    (MCP deps)             │
+│                                                     │
+│  📚 Documentation (docs/)                           │
+│  ├─ README.md               (root - main docs)     │
+│  ├─ MCP_README.md           (MCP details)          │
+│  ├─ SETUP_MCP.md            (setup guide)          │
+│  ├─ QUICKSTART.md           (fast setup)           │
+│  ├─ ARCHITECTURE.md         (this file)            │
+│  └─ SECURITY_CHECKLIST.md   (security)             │
+└─────────────────────────────────────────────────────┘
 ```
 
 ## Component Details
